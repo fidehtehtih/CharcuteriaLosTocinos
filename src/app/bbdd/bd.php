@@ -15,7 +15,7 @@ private $table_name5 = "refTicket";
 private $table_name6 = "carrito";
 private $table_name7 = "productos";
 private $table_name8 = "pedidoProveedor";
-private $connection="";
+private $connection;
 private $tableFileds="";
 
 	
