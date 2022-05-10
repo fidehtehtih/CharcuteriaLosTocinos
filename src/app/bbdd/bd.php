@@ -5,3 +5,4 @@ CREATE TABLE `mascotas` (
   `edad` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+edgar
