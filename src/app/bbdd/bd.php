@@ -7,13 +7,13 @@ private $server = "localhost";
 private $database_name = "charcuteriatocinos";
 private $username = "root";
 private $password = "";
-private $table_name1 = "usuarios";
+private $table_name1 = "productos";
 private $table_name2 = "ticket";
 private $table_name3 = "proveedores";
-private $table_name4 = "tarjetaCredit";
+private $table_name4 = "tarjetacredito";
 private $table_name5 = "refTicket";
 private $table_name6 = "carrito";
-private $table_name7 = "productos";
+private $table_name7 = "usuarios";
 private $table_name8 = "pedidoProveedor";
 private $connection;
 private $tableFileds="";
@@ -39,18 +39,18 @@ private $tableFileds="";
       $this->defineTableField4();
 			$this->createTables($this->table_name4);
 			
-			$this->defineTableField5();
-			$this->createTables($this->table_name5);
+			// $this->defineTableField5();
+			// $this->createTables($this->table_name5);
 
-			$this->defineTableField6();
-			$this->createTables($this->table_name6);
+			// $this->defineTableField6();
+			// $this->createTables($this->table_name6);
 
       		
 			$this->defineTableField7();
 			$this->createTables($this->table_name7);
 
-			$this->defineTableField8();
-			$this->createTables($this->table_name8);
+			// $this->defineTableField8();
+			// $this->createTables($this->table_name8);
 			
 
 
@@ -97,73 +97,43 @@ Por el contrario, escogeremos MyISAM en aquellos casos en los que predominen las
 
 	private function defineTableField1(){
 		$this -> tableFileds="
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`Login` varchar(100) NOT NULL,
-		`Password` varchar(200) NOT NULL,
-		`Email` varchar(200) NOT NULL,
-		 PRIMARY KEY (`id`)";
-/*$this -> tableFileds="
-		`id` int(11) NOT NULL,
-		`name` varchar(100) NOT NULL,
-		`surnames` varchar(100) NOT NULL,
-		`email` varchar(200) NOT NULL,
-		`address` varchar(150) NOT NULL,
-		`city` varchar(100) NULL,
-		`state` varchar(50) NOT NULL,
-		`postalCode` varchar(10) NOT NULL,
-		`country` varchar(100) NOT NULL,
-		`password` varchar(200) NOT NULL";*/
+    `idProductos` int(3) NOT NULL,
+    `nombre` varchar(25) NOT NULL,
+    `precio` decimal(10,0) NOT NULL,
+    `precioVenta` decimal(10,0) NOT NULL,
+    `tipo` varchar(15) NOT NULL,
+    `unidades` int(11) NOT NULL,
+    `peso` decimal(10,0) NOT NULL";
 
 	}
 	private function defineTableField2(){
 		$this -> tableFileds="
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`type` varchar(50) NOT NULL,
-		`product` varchar(200) NOT NULL,
-		`description` text  NOT NULL,
-		`price` decimal(10,2) NOT NULL,
-		`quantity` int(11) NOT NULL,
-		`discount` decimal(10,2) NOT NULL,
-		`Shipping` decimal(10,2) NOT NULL,
-		`image` varchar(100) NOT NULL,
-		`date` date NOT NULL,
-		 PRIMARY KEY (`id`)";
+    `idTicket` int(11) NOT NULL,
+    `fecha` date NOT NULL,
+    `coste` decimal(10,0) NOT NULL,
+    `dineroEntregado` decimal(10,0) NOT NULL,
+    `dineroDevuelto` decimal(10,0) NOT NULL";
 	}
 
 	private function defineTableField3(){
 		$this -> tableFileds="
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`idUser` int(11) NOT NULL,
-		`product` varchar(200) NOT NULL,
-		`price` decimal(10,2) NOT NULL,
-		`discount` decimal(10,2) NOT NULL,
-		`Shipping` decimal(10,2) NOT NULL,
-		`state` char(1) NOT NULL,
-		`quantity` int(11) NOT NULL,
-		`date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		`PayerID` varchar(50) NOT NULL,
-		 PRIMARY KEY (`id`)";
+    `idProveedores` int(11) NOT NULL,
+    `nombre` varchar(45) NOT NULL,
+    `telefono` int(9) NOT NULL,
+    `email` varchar(50) NOT NULL,
+    `direccion` varchar(50) NOT NULL,
+    `cp` int(5) NOT NULL,
+    `fecha` date NOT NULL";
 	}
 
 
   private function defineTableField4(){
 		$this -> tableFileds="
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`Login` varchar(100) NOT NULL,
-		`Password` varchar(200) NOT NULL,
-		`Email` varchar(200) NOT NULL,
-		 PRIMARY KEY (`id`)";
-/*$this -> tableFileds="
-		`id` int(11) NOT NULL,
-		`name` varchar(100) NOT NULL,
-		`surnames` varchar(100) NOT NULL,
-		`email` varchar(200) NOT NULL,
-		`address` varchar(150) NOT NULL,
-		`city` varchar(100) NULL,
-		`state` varchar(50) NOT NULL,
-		`postalCode` varchar(10) NOT NULL,
-		`country` varchar(100) NOT NULL,
-		`password` varchar(200) NOT NULL";*/
+	  `idTargetaCredito` int(11) NOT NULL,
+  `nombreCompleto` int(100) NOT NULL,
+  `numeroTargeta` int(20) NOT NULL,
+  `fechaCaducidad` date NOT NULL,
+  `codSeguridad` int(3) NOT NULL";
 
 	}
 	private function defineTableField5(){
@@ -199,17 +169,15 @@ Por el contrario, escogeremos MyISAM en aquellos casos en los que predominen las
 
   private function defineTableField7(){
 		$this -> tableFileds="
-		`id` int(11) NOT NULL AUTO_INCREMENT,
-		`type` varchar(50) NOT NULL,
-		`product` varchar(200) NOT NULL,
-		`description` text  NOT NULL,
-		`price` decimal(10,2) NOT NULL,
-		`quantity` int(11) NOT NULL,
-		`discount` decimal(10,2) NOT NULL,
-		`Shipping` decimal(10,2) NOT NULL,
-		`image` varchar(100) NOT NULL,
-		`date` date NOT NULL,
-		 PRIMARY KEY (`id`)";
+		`idUsuario` int(3) NOT NULL,
+  `nombre` varchar(25) NOT NULL,
+  `apellidos` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `telefono` int(9) DEFAULT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `cp` int(5) NOT NULL,
+  `tipoUsuario` int(1) NOT NULL";
 	}
 
 	private function defineTableField8(){
