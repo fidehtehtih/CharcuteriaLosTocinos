@@ -4,12 +4,17 @@ class MySQLdb
 	{
 
 private $server = "localhost";
-private $database_name = "ecommercejbmraul";
+private $database_name = "charcuteriatocinos";
 private $username = "root";
 private $password = "";
-private $table_name1 = "users";
-private $table_name2 = "products";
-private $table_name3 = "cart";
+private $table_name1 = "usuarios";
+private $table_name2 = "ticket";
+private $table_name3 = "proveedores";
+private $table_name4 = "tarjetaCredit";
+private $table_name5 = "refTicket";
+private $table_name6 = "carrito";
+private $table_name7 = "productos";
+private $table_name8 = "pedidoProveedor";
 private $connection="";
 private $tableFileds="";
 
@@ -29,7 +34,26 @@ private $tableFileds="";
 
 			$this->defineTableField3();
 			$this->createTables($this->table_name3);
+
+
+      $this->defineTableField4();
+			$this->createTables($this->table_name4);
 			
+			$this->defineTableField5();
+			$this->createTables($this->table_name5);
+
+			$this->defineTableField6();
+			$this->createTables($this->table_name6);
+
+      		
+			$this->defineTableField7();
+			$this->createTables($this->table_name7);
+
+			$this->defineTableField8();
+			$this->createTables($this->table_name8);
+			
+
+
 			$this->insertProducts();
 		}
 
@@ -120,28 +144,113 @@ Por el contrario, escogeremos MyISAM en aquellos casos en los que predominen las
 		`PayerID` varchar(50) NOT NULL,
 		 PRIMARY KEY (`id`)";
 	}
-public function functionVerifyRegister(){
-	$Login   = $_POST["Login"];
-	$Password= $_POST["Password"];
-	$query = mysqli_query($this->connection, "SELECT * FROM $this->database_name.$this->table_name1 WHERE Login='$Login' AND Password='$Password'");
-	$numrows = mysqli_num_rows($query);
-	            if ($numrows > 0)echo '<br>'."user OK:".$numrows;
-	            else echo '<br>'."user NO OK";
+
+
+  private function defineTableField4(){
+		$this -> tableFileds="
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`Login` varchar(100) NOT NULL,
+		`Password` varchar(200) NOT NULL,
+		`Email` varchar(200) NOT NULL,
+		 PRIMARY KEY (`id`)";
+/*$this -> tableFileds="
+		`id` int(11) NOT NULL,
+		`name` varchar(100) NOT NULL,
+		`surnames` varchar(100) NOT NULL,
+		`email` varchar(200) NOT NULL,
+		`address` varchar(150) NOT NULL,
+		`city` varchar(100) NULL,
+		`state` varchar(50) NOT NULL,
+		`postalCode` varchar(10) NOT NULL,
+		`country` varchar(100) NOT NULL,
+		`password` varchar(200) NOT NULL";*/
+
 	}
-public function functionInsertRegister(){
-	$Login = $_POST["Login"];
-	$Password=$_POST["Password"];
-	$Email=$_POST["Email"];	
-	$query = "INSERT INTO `$this->database_name`.`$this->table_name1` (`Login`, `Password`,`Email`) VALUES ('$Login', '$Password', '$Email');";
-	$ok= mysqli_query($this->connection, $query);
-	if($ok) {
-	     echo "New record create successfully";
-	     return true;
-	} else {
-	     echo "New record: Error ";
-	     return false;
+	private function defineTableField5(){
+		$this -> tableFileds="
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`type` varchar(50) NOT NULL,
+		`product` varchar(200) NOT NULL,
+		`description` text  NOT NULL,
+		`price` decimal(10,2) NOT NULL,
+		`quantity` int(11) NOT NULL,
+		`discount` decimal(10,2) NOT NULL,
+		`Shipping` decimal(10,2) NOT NULL,
+		`image` varchar(100) NOT NULL,
+		`date` date NOT NULL,
+		 PRIMARY KEY (`id`)";
 	}
- }
+
+	private function defineTableField6(){
+		$this -> tableFileds="
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`idUser` int(11) NOT NULL,
+		`product` varchar(200) NOT NULL,
+		`price` decimal(10,2) NOT NULL,
+		`discount` decimal(10,2) NOT NULL,
+		`Shipping` decimal(10,2) NOT NULL,
+		`state` char(1) NOT NULL,
+		`quantity` int(11) NOT NULL,
+		`date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		`PayerID` varchar(50) NOT NULL,
+		 PRIMARY KEY (`id`)";
+	}
+
+
+  private function defineTableField7(){
+		$this -> tableFileds="
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`type` varchar(50) NOT NULL,
+		`product` varchar(200) NOT NULL,
+		`description` text  NOT NULL,
+		`price` decimal(10,2) NOT NULL,
+		`quantity` int(11) NOT NULL,
+		`discount` decimal(10,2) NOT NULL,
+		`Shipping` decimal(10,2) NOT NULL,
+		`image` varchar(100) NOT NULL,
+		`date` date NOT NULL,
+		 PRIMARY KEY (`id`)";
+	}
+
+	private function defineTableField8(){
+		$this -> tableFileds="
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		`idUser` int(11) NOT NULL,
+		`product` varchar(200) NOT NULL,
+		`price` decimal(10,2) NOT NULL,
+		`discount` decimal(10,2) NOT NULL,
+		`Shipping` decimal(10,2) NOT NULL,
+		`state` char(1) NOT NULL,
+		`quantity` int(11) NOT NULL,
+		`date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		`PayerID` varchar(50) NOT NULL,
+		 PRIMARY KEY (`id`)";
+	}
+
+
+
+// public function functionVerifyRegister(){
+// 	$Login   = $_POST["Login"];
+// 	$Password= $_POST["Password"];
+// 	$query = mysqli_query($this->connection, "SELECT * FROM $this->database_name.$this->table_name1 WHERE Login='$Login' AND Password='$Password'");
+// 	$numrows = mysqli_num_rows($query);
+// 	            if ($numrows > 0)echo '<br>'."user OK:".$numrows;
+// 	            else echo '<br>'."user NO OK";
+// 	}
+// public function functionInsertRegister(){
+// 	$Login = $_POST["Login"];
+// 	$Password=$_POST["Password"];
+// 	$Email=$_POST["Email"];	
+// 	$query = "INSERT INTO `$this->database_name`.`$this->table_name1` (`Login`, `Password`,`Email`) VALUES ('$Login', '$Password', '$Email');";
+// 	$ok= mysqli_query($this->connection, $query);
+// 	if($ok) {
+// 	     echo "New record create successfully";
+// 	     return true;
+// 	} else {
+// 	     echo "New record: Error ";
+// 	     return false;
+// 	}
+//  }
 
 
 	private function insertProducts(){	//Solo la primera vez
