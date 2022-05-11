@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './view-login-user.component.html',
   styleUrls: ['./view-login-user.component.css']
 })
+
 export class ViewLoginUserComponent implements OnInit {
 
   constructor() { 

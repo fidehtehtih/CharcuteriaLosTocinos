@@ -2,7 +2,7 @@
 
 <head>
     <title>Autentificación PHP</title>
-    <link rel="stylesheet" href="css\login.css">
+    <!-- <link rel="stylesheet" href="css\login.css"> -->
 </head>
 
 <body>
@@ -12,11 +12,11 @@
             <tr>
                 <td colspan="2" align="center">
                     <b id="tit2">Introduce tu clave de acceso </b>
-                    <?php if (isset($_GET["errorusuario"])) {
-if ($_GET["errorusuario"]=="si") { ?>
+                    <!-- <? php if (isset($_GET["errorusuario"])) {
+                        if ($_GET["errorusuario"]=="si") { ?> -->
                     <p style="color:cc0000"><b>Datos incorrectos</b></p>
-                    <?php }
-} ?>
+                    <!-- <? php }
+} ?> -->
                 </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@ if ($_GET["errorusuario"]=="si") { ?>
                 <tr>
                     <td id="tit4"><a href='borrar.php'>Borrar usuario</a></td>
                 </tr>
-            </tr>
+                <!-- </tr> -->
         </table>
     </form>
 </body>
