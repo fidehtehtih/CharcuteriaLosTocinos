@@ -1,1 +1,46 @@
-<p>view-login-user works!</p>
+<html>
+
+<head>
+    <title>Autentificación PHP</title>
+    <link rel="stylesheet" href="css\login.css">
+</head>
+
+<body>
+    <h1 id="tit1">Formulario de Autentificación PHP</h1>
+    <form action="php\control.php" method="POST">
+        <table align="center" width="225" cellspacing="2" cellpadding="2" border="0">
+            <tr>
+                <td colspan="2" align="center">
+                    <b id="tit2">Introduce tu clave de acceso </b>
+                    <?php if (isset($_GET["errorusuario"])) {
+if ($_GET["errorusuario"]=="si") { ?>
+                    <p style="color:cc0000"><b>Datos incorrectos</b></p>
+                    <?php }
+} ?>
+                </td>
+            </tr>
+            <tr>
+                <td id="tit3">USUARIO:</td>
+                <td><input type="Text" name="user" size="12" maxlength="50" /></td>
+            </tr>
+            <tr>
+                <td id="tit3" align="right">CONTRASEÑA:</td>
+                <td><input type="password" name="pass" size="12" maxlength="50" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="Submit" value="ENTRAR"></td>
+            </tr>
+            <tr>
+                <td id="tit4"><a href='registro.php'>Registrarse</a></td>
+                <tr>
+                    <td id="tit4"><a href='modificar.php'>Cambiar contraseña</a></td>
+                </tr>
+                <tr>
+                    <td id="tit4"><a href='borrar.php'>Borrar usuario</a></td>
+                </tr>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

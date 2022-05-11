@@ -1,0 +1,28 @@
+body {
+    background-color: #FEDB6E;
+    text-align: center;
+}
+
+#tit1 {
+    font-family: "Segoe UI";
+    background-color: #F3EACB;
+    font-size: 40px;
+}
+
+#tit2 {
+    font-family: "Segoe UI";
+    font-size: 30px;
+}
+
+#tit3 {
+    font-family: "Segoe UI";
+    font-size: 20px;
+    align: right;
+}
+
+#tit4 {
+    font-family: "Segoe UI";
+    font-size: 15px;
+    colspan: 2px;
+    text-align: center;
+}
