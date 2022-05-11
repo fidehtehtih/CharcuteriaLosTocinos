@@ -89,7 +89,7 @@ private $tableFileds="";
 MyISAM o InnoDB? Elige motor de almacenamiento MySQLSi:
 Si necesitamos transacciones, claves foráneas y bloqueos, tendremos que escoger InnoDB. 
 Por el contrario, escogeremos MyISAM en aquellos casos en los que predominen las consultas SELECT a la base de datos.
-
+ff
 	  */
     }
 
